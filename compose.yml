@@ -2,16 +2,13 @@ name: docling
 
 services:
   app:
-    image: ghcr.io/docling-project/docling-serve-cu130
+    image: ghcr.io/docling-project/docling-serve-cu130:main
     restart: unless-stopped
     ipc: host  # Required for efficient memory sharing in multi-process inference
     ports:
       - $APP_PORT:5001
-    volumes:
-      - ./data:/modelcache
     environment:
       DOCLING_SERVE_ENABLE_UI: 1
-      DOCLING_SERVE_ARTIFACTS_PATH: /modelcache
     deploy:
       resources:
         reservations:
